@@ -38,39 +38,39 @@ py app.py      (Windows)
 a) How to insert new partner
 
 mutation{
-  createPartner(  input:{
-  id: "121w1", 
-  tradingName: "Adega da Cerveja - Pinheiros",
-  ownerName: "Zé da Silva",
-  document: "1432132123891/0001",
-  coverageArea:      
-  [
-      [[[30, 20], [45, 40], [10, 40], [30, 20]]], 
-      [[[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]]]
-  ] ,  
-  address: [-46.57421, -21.785741]
-   })
+	createPartner(  input:{
+	id: "121w1", 	
+  	tradingName: "Adega da Cerveja - Pinheiros",  	  	
+  	ownerName: "Zé da Silva",
+  	document: "1432132123891/0001",  	
+  	coverageArea:
+  	[
+  			[[[30, 20], [45, 40], [10, 40], [30, 20]]], 
+  		[[[15, 5], [40, 10], [10, 20], [5, 10], [15, 5]]] 
+  	] ,    	
+  	address: [-46.57421, -21.785741]  	
+   })   
   {
-    partner {
-      id
-    }
-    res
-  }
+      partner {      
+      id      
+    }    
+    res    
+  }  
 } 
 
 
 b) How to find partner by id
 query{
-  loadPartnerById(id:"1"){
-    id,
-    document,
-    ownerName,
-    tradingName,
-    address{
+  loadPartnerById(id:"1"){  
+    id,    
+    document,    
+    ownerName,    
+    tradingName,    
+    address{    
       coordinates
     },
-    coverageArea{
-      coordinates
+    coverageArea{    
+      coordinates      
     }
   }
 }
@@ -78,17 +78,18 @@ query{
 
 c) How to search nearest partner
 
+
 query{
-  searchPartner(point:[11,11]){
-    tradingName,
-    address {
-      coordinates
-    },
-    coverageArea{
-      coordinates
-    }
-    id,
-    document
-  }  
+  searchPartner(point:[11,11]){  
+    tradingName,    
+    address {    
+      coordinates      
+    },    
+    coverageArea{    
+      coordinates      
+    }    
+    id,    
+    document    
+  }    
 } 
   
