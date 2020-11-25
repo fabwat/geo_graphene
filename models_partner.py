@@ -1,6 +1,6 @@
 #models_partner.py
 from mongoengine import (
-    MultiPolygonField, PointField, StringField,IntField,ListField,Document
+    MultiPolygonField, PointField, StringField,IntField,ListField,Document,ObjectIdField
 )
 
 class PartnerModel(Document):
@@ -8,7 +8,7 @@ class PartnerModel(Document):
     id = StringField(primary_key=True)
     tradingName=StringField()
     ownerName=StringField()
-    document=StringField(unique=True)
+    document=StringField(unique=True)    
     address=PointField()
     coverageArea=MultiPolygonField()   
 

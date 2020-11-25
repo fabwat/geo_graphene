@@ -1,12 +1,18 @@
 # schema.py
-import graphene
+from graphene import List
+from graphene import Field
+from graphene import Float
+from graphene import String
+from graphene import InputObjectType
+from graphene import Schema
+from graphene import ID
+from graphene import Mutation
+from graphene.relay import Node
 from graphene_mongo import  MongoengineObjectType
 from models_partner import PartnerModel as PartnerModel
-from graphql_relay.node.node import from_global_id
 
-from mongoengine import *
 
-class CustomNode(graphene.Node):
+class CustomNode(Node):
     class Meta:
         name = 'Node'
 
@@ -14,35 +20,42 @@ class CustomNode(graphene.Node):
     def to_global_id(type, id):
         return id
 
+
 class PartnerAttributes:         
-    id=graphene.String()
-    tradingName= graphene.String()
-    ownerName= graphene.String()
-    document= graphene.String()
-    address=graphene.List(graphene.Float)
-    coverageArea=graphene.List(graphene.List(graphene.List(graphene.List(graphene.Float))))
+    id=ID()
+    tradingName= String()
+    ownerName= String()
+    document= ID()
+    address=List(Float)
+    coverageArea=List(List(List(List(Float))))
 
 
 class PartnerNode(MongoengineObjectType):
     class Meta:
-        model = PartnerModel            
+        model = PartnerModel        
         interfaces = (CustomNode, ) 
                 
-class CreatePartnerInput(graphene.InputObjectType, PartnerAttributes):      
+class CreatePartnerInput(InputObjectType, PartnerAttributes):      
     pass 
 
-class CreatePartner(graphene.Mutation): 
-    partner = graphene.Field(lambda: PartnerNode)
- 
+
+class CreatePartner(Mutation): 
+    partner = Field(lambda: PartnerNode)
+    res = String()
+
     class Arguments:
         input = CreatePartnerInput(required=True)        
  
-    def mutate(self, info, input):        
-        partner = PartnerModel(**input)           
-        partner.save()
-        return f'ok'
-
-    # def resolve_id(self, info):
-    #     return self.partnerId  
+    def mutate(self, info, input):          
+        partner = PartnerModel(**input)  
+        res=PartnerModel.objects.filter(id=input.id)
+        if res:
+            res=False
+            return CreatePartner(res='Error:Id is duplicated.') 
+        else:
+            partner.save()
+            res=True
+            return CreatePartner(partner=partner, res='ok') 
+  
 
 
