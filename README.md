@@ -6,6 +6,9 @@ This source implements geo spatial queries based on GRAPHQL API
 - Download and install python3.6:
 https://www.python.org/downloads/
 
+- Install MongoDB database:
+https://docs.mongodb.com/manual/installation/
+
 - Install pip and virtual env
 On macOS and Linux:
 python3 -m pip install --user --upgrade pip
