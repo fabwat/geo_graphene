@@ -14,7 +14,10 @@ python3 -m pip install --user virtualenv
 On Windows:
 py -m pip install --user virtualenv
 
-- Create a virtual env to install packages needed to run the python program
+- Clone the git repository
+ git clone https://github.com/fabwat/geo_graphene.git
+
+- Inside the geo_graphene folder,create a virtual env and install packages needed to run the program:
 On macOS and Linux:
 python3 -m venv geo_graphene
 source geo_graphene/bin/activate
