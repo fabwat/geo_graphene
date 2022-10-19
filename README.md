@@ -46,8 +46,8 @@ a) How to insert new partner
 mutation{
 	createPartner(  input:{
 	id: "121w1", 	
-  	tradingName: "Adega da Cerveja - Pinheiros",  	  	
-  	ownerName: "Zé da Silva",
+  	tradingName: "Restaurante1",  	  	
+  	ownerName: "Jose",
   	document: "1432132123891/0001",  	
   	coverageArea:
   	[
@@ -65,7 +65,7 @@ mutation{
 } 
 
 
-b) How to find partner by id
+b) How to find restaurant by id
 query{
   loadPartnerById(id:"1"){  
     id,    
@@ -82,7 +82,7 @@ query{
 }
 
 
-c) How to search nearest partner
+c) How to search nearest restaurant
 
 
 query{
